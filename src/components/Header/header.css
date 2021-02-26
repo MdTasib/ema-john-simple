@@ -1,0 +1,21 @@
+.header {
+    text-align: center;
+}
+.header img {
+    height: 80px;
+}
+.header nav {
+    background: black;
+}
+.header ul li {
+    display: inline-block;
+    padding: 10px;
+    margin: 0px 10px;
+}
+.header ul li:hover {
+    background: gray;
+}
+.header ul li a {
+    text-decoration: none;
+    color: white;
+}
