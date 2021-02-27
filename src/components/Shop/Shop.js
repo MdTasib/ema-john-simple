@@ -1,6 +1,7 @@
 import './shop.css';
 import React, { useState } from 'react';
 import fakeData from '../../fakeData';
+import Product from '../Product/Product';
 
 const Shop = () => {
     const product10 = fakeData.slice(0, 10);
@@ -8,12 +9,10 @@ const Shop = () => {
 
     return (
         <div className='shop-container'>
-            <div className="products-container">
-                <ul>
-                    {
-                        products.map(product => <li>{product.name}</li>)
-                    }
-                </ul>
+            <div className="item-container">
+                {
+                    products.map(singleProduct => <Product product={singleProduct}></Product>)
+                }
             </div>
             <div className="cart-container"><h1>THis is cart area</h1></div>
         </div>

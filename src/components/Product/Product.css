@@ -1,0 +1,23 @@
+img {
+    max-width: 100%;
+}
+.product {
+    display: flex;
+    padding: 10px;
+    border-bottom: 2px solid lightslategrey;
+}
+.product-img {
+    width: 25%;
+    margin-right: 30px;
+}
+.product-description {
+    width: 75%;
+}
+.product-description h4{
+    color: blue;
+}
+.product-description span, p{
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
