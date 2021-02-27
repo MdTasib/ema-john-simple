@@ -14,7 +14,10 @@ const Shop = () => {
                     products.map(singleProduct => <Product product={singleProduct}></Product>)
                 }
             </div>
-            <div className="cart-container"><h1>THis is cart area</h1></div>
+            <div className="cart-container">
+                <h3>Order</h3>
+                <button>Review your order</button>
+            </div>
         </div>
     );
 };
