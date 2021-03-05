@@ -5,6 +5,7 @@ import ReviewItem from '../ReviewItem/ReviewItem';
 
 const Review = () => {
     const [cart, setCart] = useState([]);
+
     const removeProduct = productKeys => {
         const newCart = cart.filter(pd => pd.key !== productKeys);
         setCart(newCart);
