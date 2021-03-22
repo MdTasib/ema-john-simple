@@ -19,7 +19,6 @@ import PrivateRouter from './components/PrivateRouter/PrivateRouter';
 
 export const UserContext = createContext();
 
-
 function App(props) {
   const [loggedInUser, setLoggedInUser] = useState({});
   return (
