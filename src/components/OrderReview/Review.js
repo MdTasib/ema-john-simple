@@ -39,7 +39,6 @@ const Review = () => {
             .then(data => setCart(data));
     }, [])
 
-
     let thinkYou;
     if (orderPlaced) {
         thinkYou = <img src={happyImage} alt="" />
