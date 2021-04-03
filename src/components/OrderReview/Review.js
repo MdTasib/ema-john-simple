@@ -6,6 +6,7 @@ import Cart from '../Cart/Cart';
 import happyImage from '../../images/giphy.gif';
 import { useHistory } from 'react-router-dom';
 
+
 const Review = () => {
     // page title
     document.title = 'Review Product';
