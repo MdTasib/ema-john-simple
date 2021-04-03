@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { getDatabaseCart, removeFromDatabaseCart, processOrder } from '../../utilities/databaseManager';
-import fakeData from '../../fakeData';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import '../Shop/shop.css';
 import Cart from '../Cart/Cart';
@@ -8,6 +7,8 @@ import happyImage from '../../images/giphy.gif';
 import { useHistory } from 'react-router-dom';
 
 const Review = () => {
+    // page title
+    document.title = 'Review Product';
     const [cart, setCart] = useState([]);
     const [orderPlaced, setOrderPlaced] = useState(false);
 
@@ -27,12 +28,14 @@ const Review = () => {
         // cart
         const saveCart = getDatabaseCart();
         const productKeys = Object.keys(saveCart);
-        const cartProducts = productKeys.map(key => {
-            const product = fakeData.find(pd => pd.key === key);
-            product.quantity = saveCart[key];
-            return product;
-        });
-        setCart(cartProducts);
+
+        fetch('http://localhost:4000/productsByKeys', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(productKeys)
+        })
+            .then(res => res.json())
+            .then(data => setCart(data));
     }, [])
 
 

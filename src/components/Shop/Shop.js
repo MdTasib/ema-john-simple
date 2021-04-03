@@ -3,25 +3,34 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import fakeData from '../../fakeData';
 import Product from '../Product/Product';
 import Cart from '../Cart/Cart';
 import { addToDatabaseCart, getDatabaseCart } from '../../utilities/databaseManager';
 
 const Shop = () => {
-    const product10 = fakeData.slice(0, 10);
-    const [products, setProducts] = useState(product10);
+    // const product10 = fakeData.slice(0, 10);
+    const [products, setProducts] = useState([]);
     const [cart, setCart] = useState([]);
+    // page title
+    document.title = 'Shop More';
+
+    useEffect(() => {
+        fetch('http://localhost:4000/products')
+            .then(res => res.json())
+            .then(data => setProducts(data))
+    }, [])
 
     useEffect(() => {
         const savedCart = getDatabaseCart();
         const productKeys = Object.keys(savedCart);
-        const productsCart = productKeys.map(existingKey => {
-            const product = fakeData.find(pd => pd.key === existingKey);
-            product.quantity = savedCart[existingKey];
-            return product;
+
+        fetch('http://localhost:4000/productsByKeys', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(productKeys)
         })
-        setCart(productsCart);
+            .then(res => res.json())
+            .then(data => setCart(data));
     }, [])
 
     const handleAddProduct = (product) => {
@@ -46,6 +55,9 @@ const Shop = () => {
     return (
         <div className='shop-container'>
             <div className="item-container">
+                {
+                    products.length === 0 && <img src="https://beta.derbywars.com/730962f1428d399370f94df3aa99a10273b07ff9/images/horse-running-large-gray.gif" alt="" />
+                }
                 {
                     products.map((singleProduct, index) => <Product
                         key={index}
